@@ -1,4 +1,6 @@
 import random
+import sys
+import pandas
 
 #making a collection of words
 word_set = ["alaska", "alabama", "arizona", "arkansas", "california", "colorado", "connecticut", "delaware", "florida", "georgia", "hawaii", 
@@ -39,22 +41,44 @@ while i>0:
 print("\n")
 
 guessed = ""
+len_guessed = 0
+guessed_word = ""
+finished = None
 
 while guess_count > 0 :
-    guess = input("\nYou have " + str(guess_count) + " guesses left. Make your next guess: \n")
+    guess = input("\nYou have " + str(guess_count) + " guesses left. Make your next guess: ")
+    print("Your guesses till now have been: " + guessed)
     guessed = guessed + guess
     for letter in word:
         if letter in guessed:
-            print(letter+ " ", end = '')
+            print(letter + " ", end = "")
+            if(letter not in guessed_word):
+                guessed_word += letter
         else:
-            print("_ ", end = '')
-        print("\n")
-
+            print("_ ", end = "")
+        if(len(guessed_word) == word_len):
+            print("\nYou have guessed it correctly!\n")
+            finished = True
+            #print(str(word_len) + " " + str(len(guessed_word)) + " " + guessed_word)
+            break
+    #print(guessed_word)
+    print("\n")
     guess_count = guess_count - 1
+    if finished == True:
+        break
+
+if(guess_count == 0):
+    print("You have ran out of guesses! Thanks for playing\n")
 
 
+yn = input("Do you want to play again? Y/N: ")
 
-
+if yn == "Y":
+    #run()#restart
+    print("restart")
+elif yn == "N":
+    print("Thanks for playing")
+    sys.exit()
 
     
 

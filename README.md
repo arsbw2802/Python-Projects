@@ -1,3 +1,0 @@
-# Hangman-game
-
-kjbkjbkjbkb
